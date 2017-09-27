@@ -1,7 +1,2 @@
--- Create syntax for 'language'
-
-CREATE TABLE `language` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+select p.id as 'professional_id', p.gender_id, p.customer_may_contact, l.id as 'language_id', l.name as 'language', CASE WHEN p.claimed_by IS NOT NULL THEN 1 ELSE 0 END as claimed 
+from professional p join professional_language pl on p.id = pl.professional_id  join language l on l.id = pl.language_id ORDER BY RAND() limit 5000;
