@@ -1,19 +1,21 @@
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy
+import pdb
 # fix random seed for reproducibility
 numpy.random.seed(7)
 
 # load pima indians dataset
-dataset = numpy.loadtxt("racist.csv", delimiter=",", usecols=[1,2,3,5])
+dataset = numpy.loadtxt("query_result.csv", delimiter=",")
+# dataset = numpy.loadtxt("query_result.csv", delimiter=",", usecols=[7])
 # split into input (X) and output (Y) variables
-X = dataset[:,0:3]
-print(X)
-Y = dataset[:,3]
+X = dataset[:,0:9]
+
+Y = dataset[:,9]
 
 # create model
 model = Sequential()
-model.add(Dense(12, input_dim=3, activation='relu'))
+model.add(Dense(12, input_dim=9, activation='relu'))
 model.add(Dense(8, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
 
@@ -21,7 +23,7 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Fit the model
-model.fit(X, Y, epochs=500, batch_size=10)
+model.fit(X, Y, epochs=50, batch_size=1000)
 
 # evaluate the model
 # scores = model.evaluate(X, Y)
@@ -36,7 +38,7 @@ rounded = [round(x[0]) for x in predictions]
 
 correct = 0
 for i in range(0, len(rounded)):
-	print(str(rounded[i]) + "  " + str(Y[i]))
+	print("predicted: " + str(rounded[i]) + "  actual: " + str(Y[i]))
 	if rounded[i] == Y[i]:
 		correct = correct + 1
 

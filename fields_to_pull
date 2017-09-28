@@ -1,0 +1,10 @@
+Barrister
+	professional
+		gender_id
+		customer_may_contact
+		claimed_by (not null)
+	professional_language
+		language_id
+	professional_school
+		degree_level_id
+		degree_area_id
