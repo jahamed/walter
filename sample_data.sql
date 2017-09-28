@@ -18,7 +18,7 @@ left join professional_review p_review on p_review.professional_id = p.id
 left join sanction s on s.license_id = license.id
 where license.license_date is not null
 GROUP BY p.id
-ORDER BY RAND() limit 500000;
+ORDER BY RAND() limit 2000000;
 
 select p.id as 'professional_id', count(p_review.id) as 'number_reviews'
 from professional p
